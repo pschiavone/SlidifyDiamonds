@@ -1,0 +1,15 @@
+base
+devtools
+slidify
+knitr
+shiny
+HistData
+dplyr
+ggplot2
+EDAWR
+tidyr
+nycflights13
+lattice
+caret
+rpart
+shinyapps

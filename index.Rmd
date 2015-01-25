@@ -1,0 +1,43 @@
+---
+title       : Application For Predicting Diamond Prices
+subtitle    : 
+author      : Paul Schiavone
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+## Quick Pitch for Diamond Price Prediction App
+
+### What:  Web based App that allows users reliable diamond pricing
+
+### Why:  
+
+1. Rediculously easy to use Interface
+2. Web based.  Easy to update and deploy
+3. Built with Shiny.  Enough said.
+
+--- .class #id 
+
+## Load and PreProcess the Dataset for Exploration, Analysis and Modeling
+
+```{r }
+library(ggplot2)
+names(diamonds)
+# reduce the variables to the 4 c's and price
+dia.small <- select(diamonds, -c(x:z, depth, table))
+```
+
+---
+
+## Explore The Data
+```{r warning=FALSE}
+qplot(x = carat, y = price, data = dia.small, color = cut, shape = clarity, size = color)
+```
+
+---
+
