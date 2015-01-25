@@ -28,8 +28,12 @@ knit        : slidify::knit2slides
 ```{r }
 library(ggplot2)
 names(diamonds)
+
 # reduce the variables to the 4 c's and price
 dia.small <- select(diamonds, -c(x:z, depth, table))
+dia.small$cut <- as.integer(dia.small$cut)
+dia.small$color <- as.integer(dia.small$color)
+dia.small$clarity <- as.integer(dia.small$clarity)
 ```
 
 ---
@@ -40,4 +44,17 @@ qplot(x = carat, y = price, data = dia.small, color = cut, shape = clarity, size
 ```
 
 ---
+
+## Build and Evaluate The Model
+```{r}
+inTrain <- createDataPartition(y = dia.small$price, p = .70, list=FALSE)
+dia.train <- dia.small[inTrain, ]
+dia.test <- dia.small[-inTrain, ]
+
+model.fit <- train(price ~ ., data = dia.train, method = "lm")
+summary(model.fit$finalModel)
+preds <- predict(model.fit, newdata = dia.test)
+qplot(price, preds, data = dia.test)
+```
+
 
