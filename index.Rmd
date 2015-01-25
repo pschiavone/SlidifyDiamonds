@@ -46,15 +46,16 @@ qplot(x = carat, y = price, data = dia.small, color = cut, shape = clarity, size
 ---
 
 ## Build and Evaluate The Model
-```{r}
+```{r fig.height=10, fig.width=50}
 inTrain <- createDataPartition(y = dia.small$price, p = .70, list=FALSE)
 dia.train <- dia.small[inTrain, ]
 dia.test <- dia.small[-inTrain, ]
 
 model.fit <- train(price ~ ., data = dia.train, method = "lm")
-summary(model.fit$finalModel)
+coefficients(model.fit$finalModel)
+#summary(model.fit$finalModel)
 preds <- predict(model.fit, newdata = dia.test)
-qplot(price, preds, data = dia.test)
+#qplot(price, preds, data = dia.test)
 ```
 
 

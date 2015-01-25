@@ -108,37 +108,17 @@ dia.train &lt;- dia.small[inTrain, ]
 dia.test &lt;- dia.small[-inTrain, ]
 
 model.fit &lt;- train(price ~ ., data = dia.train, method = &quot;lm&quot;)
-summary(model.fit$finalModel)
+coefficients(model.fit$finalModel)
 </code></pre>
 
-<pre><code>## 
-## Call:
-## lm(formula = .outcome ~ ., data = dat)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -19799.6   -695.8   -167.4    556.8   9002.3 
-## 
-## Coefficients:
-##              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -4669.648     33.031 -141.37   &lt;2e-16 ***
-## carat        8800.468     15.177  579.86   &lt;2e-16 ***
-## cut           159.007      5.815   27.35   &lt;2e-16 ***
-## color        -327.108      3.942  -82.98   &lt;2e-16 ***
-## clarity       527.617      4.222  124.98   &lt;2e-16 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 1235 on 37754 degrees of freedom
-## Multiple R-squared:  0.9044, Adjusted R-squared:  0.9044 
-## F-statistic: 8.933e+04 on 4 and 37754 DF,  p-value: &lt; 2.2e-16
+<pre><code>## (Intercept)       carat         cut       color     clarity 
+##  -4669.6482   8800.4682    159.0073   -327.1080    527.6170
 </code></pre>
 
-<pre><code class="r">preds &lt;- predict(model.fit, newdata = dia.test)
-qplot(price, preds, data = dia.test)
+<pre><code class="r">#summary(model.fit$finalModel)
+preds &lt;- predict(model.fit, newdata = dia.test)
+#qplot(price, preds, data = dia.test)
 </code></pre>
-
-<p><img src="assets/fig/unnamed-chunk-3-1.png" alt="plot of chunk unnamed-chunk-3"> </p>
 
   </article>
   <!-- Presenter Notes -->
